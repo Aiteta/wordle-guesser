@@ -6,19 +6,26 @@ scores      = {line.split(',')[0]:line.split(',')[-1] for line in scores_file.re
 scores.pop("")
 scores      = {word:float(scores[word]) for word in scores}
 
+"""
 most = 0
 best = {}
 for word_a in scores:
-    #if scores[word_a] < 1:
-     #   continue
     for word_b in scores:
         if not (len(set(word_a) & set(word_b))):
-       #  if scores[word_b] < 1:
-       #     continue
-        #if not (len(set(word_a) & set(word_b))):
-                # print(word_a,word_b,scores[word_a] + scores[word_b])
             if most < scores[word_a] + scores[word_b]:
                 most = scores[word_a] + scores[word_b]
                 best = {word_a, word_b}
 
-print(most, best)
+print(most, best)"""
+
+data = dict()
+
+for word in scores:
+    for i in range(len(word)):
+        if not i in data:
+            data[i] = dict()
+        if not word[i] in data[i]:
+            data[i][word[i]] = 0
+        data[i][word[i]] += 1
+
+print(data)
